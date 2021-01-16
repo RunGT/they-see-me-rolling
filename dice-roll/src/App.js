@@ -1,9 +1,12 @@
-import './App.css';
+import "./App.css";
+import GetDieResult from "./components/GetDieResult";
 
 function App() {
   return (
-   <h1>Dice roll: initial commit</h1>
-   
+    <div className="App">
+      <h1>Dice roll</h1>
+      <GetDieResult />
+    </div>
   );
 }
 
