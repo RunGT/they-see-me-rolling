@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 
 import "../App.css";
 import d1 from "../assets/images/d1.png";
 
 export default function GetDieResult() {
-  const [dieRollResult, setDieRollResult] = useState(0);
+  const [dieRollResult, setDieRollResult] = useState(1);
 
   // Error handling: If there isn't any response from the server return an error
 
@@ -16,12 +16,16 @@ export default function GetDieResult() {
   const rollDie = () => {
     fetch("https://rolz.org/api/?d6.json")
       .then(checkResponse)
-      .then((result) => {
-        console.log(result);
+      .then((data) => {
+        setDieRollResult(data.result);
       });
   };
 
-  rollDie();
+  useEffect(() => {
+    rollDie();
+  }, []);
+
+  console.log(dieRollResult);
 
   return (
     <main>
