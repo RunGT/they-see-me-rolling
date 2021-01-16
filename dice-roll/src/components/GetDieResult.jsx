@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 import "../App.css";
 import d1 from "../assets/images/d1.png";
@@ -10,19 +10,19 @@ import d6 from "../assets/images/d6.png";
 
 export default function GetDieResult() {
   const [dieRollResult, setDieRollResult] = useState(1);
-  
-  const whichDieImageToDisply = (dieRollResult ) => {
-    if (dieRollResult === 1) {
+
+  const whichDieImageToDisply = (rollResult) => {
+    if (rollResult === 1) {
       return <img className="die" src={d1} alt="A die displaying 1" />;
-    } else if (dieRollResult === 2) {
+    } else if (rollResult === 2) {
       return <img className="die" src={d2} alt="A die displaying 2" />;
-    } else if (dieRollResult === 3) {
+    } else if (rollResult === 3) {
       return <img className="die" src={d3} alt="A die displaying 3" />;
-    } else if (dieRollResult === 4) {
+    } else if (rollResult === 4) {
       return <img className="die" src={d4} alt="A die displaying 4" />;
-    } else if (dieRollResult === 5) {
+    } else if (rollResult === 5) {
       return <img className="die" src={d5} alt="A die displaying 5" />;
-    } else if (dieRollResult === 6) {
+    } else if (rollResult === 6) {
       return <img className="die" src={d6} alt="A die displaying 6" />;
     }
   };
@@ -40,18 +40,19 @@ export default function GetDieResult() {
       .then((data) => {
         setDieRollResult(data.result);
         whichDieImageToDisply();
-        console.log(whichDieImageToDisply(data.result))
+        console.log(whichDieImageToDisply(data.result));
       });
   };
 
   useEffect(() => {
     rollDie();
-  }, [dieRollResult]);
+  }, []);
 
   console.log(dieRollResult);
 
   return (
     <main>
+      {whichDieImageToDisply()}
       <img src={d1} alt="A die displaying 1" className="die" />
     </main>
   );
