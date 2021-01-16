@@ -10,50 +10,50 @@ import d6 from "../assets/images/d6.png";
 
 export default function GetDieResult() {
   const [dieRollResult, setDieRollResult] = useState(1);
+  const [status, setStatus] = useState("idle");
 
-  const whichDieImageToDisply = (rollResult) => {
-    if (rollResult === 1) {
+  const dieImage = () => {
+    if (dieRollResult === 1) {
       return <img className="die" src={d1} alt="A die displaying 1" />;
-    } else if (rollResult === 2) {
+    } else if (dieRollResult === 2) {
       return <img className="die" src={d2} alt="A die displaying 2" />;
-    } else if (rollResult === 3) {
+    } else if (dieRollResult === 3) {
       return <img className="die" src={d3} alt="A die displaying 3" />;
-    } else if (rollResult === 4) {
+    } else if (dieRollResult === 4) {
       return <img className="die" src={d4} alt="A die displaying 4" />;
-    } else if (rollResult === 5) {
+    } else if (dieRollResult === 5) {
       return <img className="die" src={d5} alt="A die displaying 5" />;
-    } else if (rollResult === 6) {
+    } else if (dieRollResult === 6) {
       return <img className="die" src={d6} alt="A die displaying 6" />;
     }
   };
 
-  // Error handling: If there isn't any response from the server return an error
-
-  const checkResponse = (response) => {
-    if (!response.ok) throw new Error(`Network error: ${response.status}`);
-    return response.json();
-  };
-
-  const rollDie = () => {
-    fetch("https://rolz.org/api/?d6.json")
-      .then(checkResponse)
-      .then((data) => {
-        setDieRollResult(data.result);
-        whichDieImageToDisply();
-        console.log(whichDieImageToDisply(data.result));
-      });
-  };
 
   useEffect(() => {
-    rollDie();
+    setStatus("fetching");
+
+    fetch("https://rolz.org/api/?d6.json").then(async (res) => {
+      if (!res.ok) {
+        setStatus("failed");
+
+        throw new Error(`Network error: ${res.status}`);
+      }
+
+      const { result } = await res.json();
+
+      setDieRollResult(result);
+      setStatus("processed");
+    });
   }, []);
 
-  console.log(dieRollResult);
 
   return (
     <main>
-      {whichDieImageToDisply()}
-      <img src={d1} alt="A die displaying 1" className="die" />
+      {status === "processed" ? (
+        dieImage()
+      ) : (
+        <p style={{ color: "blue" }}>loading...</p>
+      )}
     </main>
   );
 }
