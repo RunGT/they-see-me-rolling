@@ -10,20 +10,20 @@ import d6 from "../assets/images/d6.png";
 
 export default function GetDieResult() {
   const [dieRollResult, setDieRollResult] = useState(1);
-
-  const whichDieImageToDisply = ({ dieRollResult }) => {
+  
+  const whichDieImageToDisply = (dieRollResult ) => {
     if (dieRollResult === 1) {
-      return <img className="dice-image" src={d1} alt="A die displaying 1" />;
+      return <img className="die" src={d1} alt="A die displaying 1" />;
     } else if (dieRollResult === 2) {
-      return <img className="dice-image" src={d2} alt="A die displaying 2" />;
+      return <img className="die" src={d2} alt="A die displaying 2" />;
     } else if (dieRollResult === 3) {
-      return <img className="dice-image" src={d3} alt="A die displaying 3" />;
+      return <img className="die" src={d3} alt="A die displaying 3" />;
     } else if (dieRollResult === 4) {
-      return <img className="dice-image" src={d4} alt="A die displaying 4" />;
+      return <img className="die" src={d4} alt="A die displaying 4" />;
     } else if (dieRollResult === 5) {
-      return <img className="dice-image" src={d5} alt="A die displaying 5" />;
+      return <img className="die" src={d5} alt="A die displaying 5" />;
     } else if (dieRollResult === 6) {
-      return <img className="dice-image" src={d6} alt="A die displaying 6" />;
+      return <img className="die" src={d6} alt="A die displaying 6" />;
     }
   };
 
@@ -39,12 +39,14 @@ export default function GetDieResult() {
       .then(checkResponse)
       .then((data) => {
         setDieRollResult(data.result);
+        whichDieImageToDisply();
+        console.log(whichDieImageToDisply(data.result))
       });
   };
 
   useEffect(() => {
     rollDie();
-  }, []);
+  }, [dieRollResult]);
 
   console.log(dieRollResult);
 
