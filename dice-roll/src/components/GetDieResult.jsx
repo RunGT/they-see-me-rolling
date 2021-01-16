@@ -7,13 +7,11 @@ import d3 from "../assets/images/d3.png";
 import d4 from "../assets/images/d4.png";
 import d5 from "../assets/images/d5.png";
 import d6 from "../assets/images/d6.png";
+import rollingdice from "../assets/images/rollingdice.png";
 
 export default function GetDieResult() {
-
-
   const [dieRollResult, setDieRollResult] = useState(1);
   const [status, setStatus] = useState("idle");
-
 
   const dieImage = () => {
     if (dieRollResult === 1) {
@@ -30,7 +28,6 @@ export default function GetDieResult() {
       return <img className="die" src={d6} alt="A die displaying 6" />;
     }
   };
-
 
   const rollDie = () => {
     setStatus("fetching");
@@ -49,18 +46,16 @@ export default function GetDieResult() {
     });
   };
 
-  
   useEffect(() => {
     rollDie();
   }, []);
-
 
   return (
     <main>
       {status === "processed" ? (
         dieImage()
       ) : (
-        <p style={{ color: "blue" }}>loading...</p>
+        <img src={rollingdice} className="rolling-dice" alt="Rolling Dice" />
       )}
       <div className="button-container">
         <button onClick={rollDie}>Click to roll</button>
