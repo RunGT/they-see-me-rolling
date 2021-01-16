@@ -9,8 +9,11 @@ import d5 from "../assets/images/d5.png";
 import d6 from "../assets/images/d6.png";
 
 export default function GetDieResult() {
+
+
   const [dieRollResult, setDieRollResult] = useState(1);
   const [status, setStatus] = useState("idle");
+
 
   const dieImage = () => {
     if (dieRollResult === 1) {
@@ -29,7 +32,7 @@ export default function GetDieResult() {
   };
 
 
-  useEffect(() => {
+  const rollDie = () => {
     setStatus("fetching");
 
     fetch("https://rolz.org/api/?d6.json").then(async (res) => {
@@ -44,6 +47,11 @@ export default function GetDieResult() {
       setDieRollResult(result);
       setStatus("processed");
     });
+  };
+
+  
+  useEffect(() => {
+    rollDie();
   }, []);
 
 
@@ -54,6 +62,9 @@ export default function GetDieResult() {
       ) : (
         <p style={{ color: "blue" }}>loading...</p>
       )}
+      <div className="button-container">
+        <button onClick={rollDie}>Click to roll</button>
+      </div>
     </main>
   );
 }

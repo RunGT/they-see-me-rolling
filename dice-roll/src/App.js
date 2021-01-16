@@ -6,9 +6,6 @@ function App() {
     <div className="App">
       <h1>Dice roll</h1>
       <GetDieResult />
-      <div className="button-container">
-        <button>Click to roll</button>
-      </div>
     </div>
   );
 }
