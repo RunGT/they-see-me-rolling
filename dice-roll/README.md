@@ -1,3 +1,19 @@
+# Dice roll simulator
+
+A quick web app to simulate dice rolls. The scope for this task was to use
+a random dice roll api to fetch a result
+
+## To run the app locally 
+
+- Clone the repo
+
+- `cd dice-roll` Ensure you are in the correct directory within the terminal
+
+- `npm i` 
+
+- `npm start`
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

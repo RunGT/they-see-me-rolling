@@ -52,14 +52,19 @@ export default function GetDieResult() {
 
   return (
     <main>
-      {status === "processed" ? (
-        dieImage()
-      ) : (
-        <img src={rollingdice} className="rolling-dice" alt="Rolling Dice" />
-      )}
-      <div className="button-container">
-        <button onClick={rollDie}>Click to roll</button>
-      </div>
+      <div className="die-container">
+        {status === "processed" ? (
+          dieImage()
+        ) : (
+          <img src={rollingdice} className="rolling-dice" alt="Rolling Dice" />
+        )}
+        </div>
+        <div className="button-container">
+        <button className="big-button" onClick={rollDie}>
+          Roll
+        </button>
+        </div>
+      
     </main>
   );
 }
