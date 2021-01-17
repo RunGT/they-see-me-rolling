@@ -1,6 +1,6 @@
 # Dice roll simulator
 
-A quick web app to simulate dice rolls. The scope for this task was to use
+A simple web app to simulate dice rolls. The scope for this task was to use
 a random dice roll api to fetch a result
 
 ## To run the app locally 
