@@ -5,8 +5,8 @@
   --colorShadeD: #bbe8d3;
   --colorShadeE: #cdffe8;
 
-  /* height: 500px; */
 }
+
 
 .App {
   text-align: center;
@@ -20,11 +20,15 @@
 
 h1 {
   padding: 20px;
+  font-family: 'Potta One', cursive;
+  font-size: 2.5rem;
+  
 }
 main {
   text-align: center;
-  /* background-color: red; */
 }
+
+
 .die {
   height: 100px;
   width: 100px;
@@ -36,6 +40,7 @@ main {
 
 .button-container {
   padding: 10px;
+  
 }
 
 .rolling-dice {
@@ -90,13 +95,6 @@ button.big-button:hover {
   transform: translate(0, 0.375em);
 }
 
-/* button.big-button:hover::before {
-  transform: translate3d(0, 0.75em, -1em);
-}
-
-button.big-button:active {
-  transform: translate(0em, 0.75em);
-} */
 
 button.big-button:active::before {
   transform: translate3d(0, 0, -1em);
